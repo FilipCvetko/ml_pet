@@ -22,8 +22,12 @@ def create_3d_array(input_dict):
     # Create an empty 3D numpy array with the determined shape
     arr = np.zeros((z_len, x_len, y_len))
 
+    # Sort the input_dict keys numerically
+    sorted_keys = sorted(input_dict, key=lambda x: int(x))
+
     # Fill in the values from the input dictionary
-    for i, (_, value) in enumerate(sorted(input_dict.items())):
+    for i, key in enumerate(sorted_keys):
+        value = input_dict[key]
         arr[i, : len(value), : len(value[0])] = value
 
     return arr
